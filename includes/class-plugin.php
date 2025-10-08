@@ -1,0 +1,145 @@
+<?php
+/**
+ * Main Plugin Class
+ *
+ * @package AIPromptsLibrary
+ */
+
+namespace AIPromptsLibrary;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Main plugin class.
+ */
+class Plugin {
+	/**
+	 * Plugin instance.
+	 *
+	 * @var Plugin
+	 */
+	private static $instance = null;
+
+	/**
+	 * Get plugin instance.
+	 *
+	 * @return Plugin
+	 */
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Constructor.
+	 */
+	private function __construct() {
+		$this->init_hooks();
+		$this->init_classes();
+	}
+
+	/**
+	 * Initialize WordPress hooks.
+	 */
+	private function init_hooks() {
+		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_action( 'init', array( $this, 'register_meta_fields' ) );
+		add_action( 'init', array( $this, 'register_blocks' ) );
+		add_action( 'init', array( $this, 'register_block_bindings' ) );
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
+	}
+
+	/**
+	 * Initialize plugin classes.
+	 */
+	private function init_classes() {
+		new Admin_Columns();
+		new Search_Enhancement();
+		new Import_Export();
+	}
+
+	/**
+	 * Register custom post type.
+	 */
+	public function register_post_type() {
+		Post_Type::register();
+	}
+
+	/**
+	 * Register custom taxonomy.
+	 */
+	public function register_taxonomy() {
+		Taxonomy::register();
+	}
+
+	/**
+	 * Register meta fields.
+	 */
+	public function register_meta_fields() {
+		Meta_Fields::register();
+	}
+
+	/**
+	 * Register blocks.
+	 */
+	public function register_blocks() {
+		// Register the prompt content block.
+		register_block_type(
+			AI_PROMPTS_LIBRARY_PATH . 'build/prompt-content'
+		);
+	}
+
+	/**
+	 * Register block bindings.
+	 */
+	public function register_block_bindings() {
+		Block_Bindings::register();
+	}
+
+	/**
+	 * Register REST API routes.
+	 */
+	public function register_rest_routes() {
+		REST_API::register_routes();
+	}
+
+	/**
+	 * Enqueue admin assets.
+	 *
+	 * @param string $hook_suffix The current admin page.
+	 */
+	public function enqueue_admin_assets( $hook_suffix ) {
+		// Enqueue admin CSS.
+		wp_enqueue_style(
+			'ai-prompts-library-admin',
+			AI_PROMPTS_LIBRARY_URL . 'assets/css/admin.css',
+			array(),
+			AI_PROMPTS_LIBRARY_VERSION
+		);
+
+		// Enqueue admin JS.
+		wp_enqueue_script(
+			'ai-prompts-library-admin',
+			AI_PROMPTS_LIBRARY_URL . 'assets/js/admin.js',
+			array( 'jquery' ),
+			AI_PROMPTS_LIBRARY_VERSION,
+			true
+		);
+	}
+
+	/**
+	 * Enqueue frontend assets.
+	 */
+	public function enqueue_frontend_assets() {
+		// Frontend assets are enqueued by the block when needed.
+	}
+}
