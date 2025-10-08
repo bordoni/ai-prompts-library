@@ -4,7 +4,7 @@ Tags: ai, prompts, gutenberg, blocks, chatgpt, claude
 Requires at least: 6.7
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,18 @@ Yes, the search functionality in the admin area searches both titles and prompt 
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 - 2025-10-08 =
+* Added: Copy button toggle control for edit mode in block settings
+* Added: Composer PSR-4 autoloading for better code organization
+* Improved: Auto mode now properly fetches content from context like WordPress core blocks
+* Improved: Block now works correctly in Query Loops and single post views
+* Fixed: GitHub Actions workflow permissions for release automation
+* Fixed: Class naming to follow PSR-4 standards (CamelCase without underscores)
+* Fixed: Character and word count calculation and display in admin columns
+* Changed: Moved all classes from includes/ to src/AIPromptsLibrary/ following PSR-4
+* Changed: Template structure - description first, then "Prompt:" label, then content
+
+= 1.0.0 - 2025-10-07 =
 * Initial release
 * Custom post type for AI prompts
 * Compatibility taxonomy
@@ -70,6 +81,9 @@ Yes, the search functionality in the admin area searches both titles and prompt 
 * Custom admin columns
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Adds copy button toggle for edit mode, improves auto mode context handling, and migrates to PSR-4 autoloading.
 
 = 1.0.0 =
 Initial release of AI Prompts Library.

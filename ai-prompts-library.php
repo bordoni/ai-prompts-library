@@ -3,7 +3,7 @@
  * Plugin Name: AI Prompts Library
  * Plugin URI: https://bordoni.me/ai-prompts-library
  * Description: A WordPress plugin to create, organize, and reuse AI prompts with advanced management features.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.7
  * Requires PHP: 7.4
  * Author: Gustavo Bordoni
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'AI_PROMPTS_LIBRARY_VERSION', '1.0.0' );
+define( 'AI_PROMPTS_LIBRARY_VERSION', '1.0.1' );
 define( 'AI_PROMPTS_LIBRARY_FILE', __FILE__ );
 define( 'AI_PROMPTS_LIBRARY_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AI_PROMPTS_LIBRARY_URL', plugin_dir_url( __FILE__ ) );

@@ -1,6 +1,6 @@
 {
   "name": "ai-prompts-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A WordPress plugin to create, organize, and reuse AI prompts with advanced management features.",
   "author": "Gustavo Bordoni <https://bordoni.me>",
   "license": "GPL-2.0-or-later",
