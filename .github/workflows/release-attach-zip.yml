@@ -6,9 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: 'Tag of the release to attach the ZIP to (e.g., v1.0.0)'
+        description: 'Tag of the release to attach the ZIP to (e.g., 1.0.0)'
         required: true
         type: string
+
+permissions:
+  contents: write
 
 jobs:
   # Build the ZIP file
