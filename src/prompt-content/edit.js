@@ -30,7 +30,7 @@ import { copy } from '@wordpress/icons';
  * @return {Element} React component.
  */
 export default function Edit( { attributes, setAttributes, context } ) {
-	const { displayMode, selectedPromptId, showCopyButton } = attributes;
+	const { displayMode, selectedPromptId, showCopyButton, showCopyButtonEdit } = attributes;
 	const [ characterCount, setCharacterCount ] = useState( 0 );
 	const [ wordCount, setWordCount ] = useState( 0 );
 
@@ -98,19 +98,31 @@ export default function Edit( { attributes, setAttributes, context } ) {
 		[]
 	);
 
-	// Get selected prompt content for display mode.
-	const selectedPrompt = useSelect(
+	// Get prompt content for display mode (auto or manual).
+	const displayPrompt = useSelect(
 		( select ) => {
-			if ( ! isEditMode && displayMode === 'manual' && selectedPromptId ) {
-				const { getEntityRecord } = select( 'core' );
+			if ( isEditMode ) {
+				return null;
+			}
+
+			const { getEntityRecord } = select( 'core' );
+
+			// Manual mode: get specifically selected prompt
+			if ( displayMode === 'manual' && selectedPromptId ) {
 				return getEntityRecord( 'postType', 'ai-prompts', selectedPromptId );
 			}
+
+			// Auto mode: get from context (like Post Content block does)
+			if ( displayMode === 'auto' && postId ) {
+				return getEntityRecord( 'postType', 'ai-prompts', postId );
+			}
+
 			return null;
 		},
-		[ displayMode, selectedPromptId, isEditMode ]
+		[ displayMode, selectedPromptId, isEditMode, postId ]
 	);
 
-	const displayContent = selectedPrompt?.meta?._ai_prompt_content || '';
+	const displayContent = displayPrompt?.meta?._ai_prompt_content || '';
 
 	// Copy to clipboard functionality.
 	const { createSuccessNotice } = useDispatch( 'core/notices' );
@@ -138,18 +150,28 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	if ( isEditMode ) {
 		return (
 			<div { ...blockProps }>
-				<BlockControls>
-					<ToolbarGroup>
-						<ToolbarButton
-							icon={ copy }
-							label={ __( 'Copy prompt to clipboard', 'ai-prompts-library' ) }
-							onClick={ copyToClipboard }
-							disabled={ ! promptContent }
-						/>
-					</ToolbarGroup>
-				</BlockControls>
+				{ showCopyButtonEdit && (
+					<BlockControls>
+						<ToolbarGroup>
+							<ToolbarButton
+								icon={ copy }
+								label={ __( 'Copy prompt to clipboard', 'ai-prompts-library' ) }
+								onClick={ copyToClipboard }
+								disabled={ ! promptContent }
+							/>
+						</ToolbarGroup>
+					</BlockControls>
+				) }
 
 				<InspectorControls>
+					<PanelBody title={ __( 'Prompt Settings', 'ai-prompts-library' ) }>
+						<ToggleControl
+							label={ __( 'Show copy button', 'ai-prompts-library' ) }
+							checked={ showCopyButtonEdit }
+							onChange={ ( value ) => setAttributes( { showCopyButtonEdit: value } ) }
+						/>
+					</PanelBody>
+
 					<PanelBody title={ __( 'Prompt Statistics', 'ai-prompts-library' ) }>
 						<p>
 							{ __( 'Character count:', 'ai-prompts-library' ) } { characterCount }

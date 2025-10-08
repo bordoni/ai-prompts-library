@@ -41,6 +41,10 @@
 		"showCopyButton": {
 			"type": "boolean",
 			"default": true
+		},
+		"showCopyButtonEdit": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {
