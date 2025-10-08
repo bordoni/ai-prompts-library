@@ -171,48 +171,6 @@ add_filter( 'ai_prompts_library_import_data', function( $data ) {
 } );
 ```
 
-## File Structure
-
-```
-ai-prompts-library/
-├── assets/
-│   ├── css/
-│   │   └── admin.css
-│   └── js/
-│       └── admin.js
-├── build/                      # Compiled assets (generated)
-├── includes/
-│   ├── class-admin-columns.php
-│   ├── class-block-bindings.php
-│   ├── class-import-export.php
-│   ├── class-meta-fields.php
-│   ├── class-plugin.php
-│   ├── class-post-type.php
-│   ├── class-rest-api.php
-│   ├── class-search-enhancement.php
-│   ├── class-taxonomy.php
-│   └── functions-helpers.php
-├── languages/                  # Translation files
-├── src/
-│   ├── prompt-content/
-│   │   ├── block.json
-│   │   ├── edit.js
-│   │   ├── editor.scss
-│   │   ├── index.js
-│   │   ├── render.php
-│   │   ├── save.js
-│   │   └── style.scss
-│   └── index.js
-├── .gitignore
-├── .nvmrc
-├── .puprc
-├── AGENTS.md
-├── ai-prompts-library.php
-├── package.json
-├── readme.txt
-└── README.md
-```
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -241,12 +199,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ```
-
-## Author
-
-**Gustavo Bordoni**
-- Website: [bordoni.me](https://bordoni.me)
-- GitHub: [@bordoni](https://github.com/bordoni)
 
 ## Support
 
