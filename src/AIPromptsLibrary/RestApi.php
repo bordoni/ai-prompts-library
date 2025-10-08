@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API class for custom endpoints.
  */
-class REST_API {
+class RestApi {
 	/**
 	 * Namespace for REST routes.
 	 */

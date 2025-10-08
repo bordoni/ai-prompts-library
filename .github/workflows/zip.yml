@@ -38,21 +38,35 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - name: Install pup
-        run: |
-          mkdir -p bin
-          curl -o bin/pup.phar -L https://github.com/stellarwp/pup/releases/download/1.3.8/pup.phar
-          chmod +x bin/pup.phar
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: pup build
-        run: php bin/pup.phar build
+        run: composer pup build
 
       - name: pup check
-        run: php bin/pup.phar check
+        run: composer pup check
 
       - name: get version
         if: ${{ inputs.production }}
-        run: echo "VERSION=$(php bin/pup.phar get-version)" >> $GITHUB_ENV
+        run: echo "VERSION=$(composer pup get-version)" >> $GITHUB_ENV
 
       - name: debug version (production)
         if: ${{ inputs.production }}
@@ -60,20 +74,20 @@ jobs:
 
       - name: get dev version
         if: ${{ !inputs.production }}
-        run: echo "VERSION=$(php bin/pup.phar get-version)--dev" >> $GITHUB_ENV
+        run: echo "VERSION=$(composer pup get-version)--dev" >> $GITHUB_ENV
 
       - name: debug version (dev)
         if: ${{ !inputs.production }}
         run: echo "Development VERSION=${{ env.VERSION }}"
 
       - name: get zip name
-        run: echo "ZIP_NAME=$(php bin/pup.phar zip-name ${{ env.VERSION }})" >> $GITHUB_ENV
+        run: echo "ZIP_NAME=$(composer pup zip-name ${{ env.VERSION }})" >> $GITHUB_ENV
 
       - name: debug zip name
         run: echo "ZIP_NAME=${{ env.ZIP_NAME }}"
 
       - name: pup package
-        run: php bin/pup.phar package ${{ env.VERSION }}
+        run: composer pup package ${{ env.VERSION }}
 
       - name: Debug directory structure after packaging
         run: |

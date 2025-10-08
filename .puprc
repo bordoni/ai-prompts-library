@@ -1,9 +1,11 @@
 {
     "build": [
+        "@composer install --no-dev",
         "npm install",
         "npm run build"
     ],
     "build_dev": [
+        "@composer install",
         "npm install",
         "npm run build"
     ],

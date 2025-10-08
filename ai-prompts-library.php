@@ -29,36 +29,41 @@ define( 'AI_PROMPTS_LIBRARY_FILE', __FILE__ );
 define( 'AI_PROMPTS_LIBRARY_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AI_PROMPTS_LIBRARY_URL', plugin_dir_url( __FILE__ ) );
 
-/**
- * Simple autoloader for plugin classes.
- *
- * @param string $class The class name to load.
- */
-function autoloader( $class ) {
-	// Check if the class is in our namespace.
-	if ( strpos( $class, __NAMESPACE__ ) !== 0 ) {
-		return;
+// Load Composer autoloader.
+if ( file_exists( AI_PROMPTS_LIBRARY_PATH . 'vendor/autoload.php' ) ) {
+	require_once AI_PROMPTS_LIBRARY_PATH . 'vendor/autoload.php';
+} else {
+	/**
+	 * Fallback autoloader for plugin classes when Composer is not available.
+	 *
+	 * @param string $class The class name to load.
+	 */
+	function autoloader( $class ) {
+		// Check if the class is in our namespace.
+		if ( strpos( $class, __NAMESPACE__ ) !== 0 ) {
+			return;
+		}
+
+		// Remove namespace from class name.
+		$class = str_replace( __NAMESPACE__ . '\\', '', $class );
+
+		// Convert class name to filename.
+		$file = 'class-' . strtolower( str_replace( '_', '-', $class ) ) . '.php';
+
+		// Build the full file path.
+		$path = AI_PROMPTS_LIBRARY_PATH . 'includes/' . $file;
+
+		// Include the file if it exists.
+		if ( file_exists( $path ) ) {
+			require_once $path;
+		}
 	}
 
-	// Remove namespace from class name.
-	$class = str_replace( __NAMESPACE__ . '\\', '', $class );
+	spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
 
-	// Convert class name to filename.
-	$file = 'class-' . strtolower( str_replace( '_', '-', $class ) ) . '.php';
-
-	// Build the full file path.
-	$path = AI_PROMPTS_LIBRARY_PATH . 'includes/' . $file;
-
-	// Include the file if it exists.
-	if ( file_exists( $path ) ) {
-		require_once $path;
-	}
+	// Include helper functions.
+	require_once AI_PROMPTS_LIBRARY_PATH . 'includes/functions-helpers.php';
 }
-
-spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
-
-// Include helper functions.
-require_once AI_PROMPTS_LIBRARY_PATH . 'includes/functions-helpers.php';
 
 /**
  * Initialize the plugin.
@@ -82,7 +87,7 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\\init' );
  */
 function activate() {
 	// Register post types and taxonomies.
-	Post_Type::register();
+	PostType::register();
 	Taxonomy::register();
 
 	// Flush rewrite rules.

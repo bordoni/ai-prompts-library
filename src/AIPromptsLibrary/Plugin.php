@@ -71,7 +71,7 @@ class Plugin {
 	 * Register custom post type.
 	 */
 	public function register_post_type() {
-		Post_Type::register();
+		PostType::register();
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Plugin {
 	 * Register meta fields.
 	 */
 	public function register_meta_fields() {
-		Meta_Fields::register();
+		MetaFields::register();
 	}
 
 	/**
@@ -102,14 +102,14 @@ class Plugin {
 	 * Register block bindings.
 	 */
 	public function register_block_bindings() {
-		Block_Bindings::register();
+		BlockBindings::register();
 	}
 
 	/**
 	 * Register REST API routes.
 	 */
 	public function register_rest_routes() {
-		REST_API::register_routes();
+		RestApi::register_routes();
 	}
 
 	/**

@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Search Enhancement class for extending search to meta fields.
  */
-class Search_Enhancement {
+class SearchEnhancement {
 	/**
 	 * Constructor.
 	 */

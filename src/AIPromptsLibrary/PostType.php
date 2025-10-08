@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Post Type class for registering the ai-prompts custom post type.
  */
-class Post_Type {
+class PostType {
 	/**
 	 * Register the custom post type.
 	 */

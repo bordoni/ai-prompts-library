@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Meta Fields class for registering post meta.
  */
-class Meta_Fields {
+class MetaFields {
 	/**
 	 * Register post meta fields.
 	 */

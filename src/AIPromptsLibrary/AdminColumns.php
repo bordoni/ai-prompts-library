@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Admin Columns class for custom admin list table columns.
  */
-class Admin_Columns {
+class AdminColumns {
 	/**
 	 * Constructor.
 	 */

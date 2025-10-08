@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Block Bindings class for registering custom bindings source.
  */
-class Block_Bindings {
+class BlockBindings {
 	/**
 	 * Register block bindings source.
 	 */

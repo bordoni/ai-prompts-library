@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Import/Export class for prompts.
  */
-class Import_Export {
+class ImportExport {
 	/**
 	 * Constructor.
 	 */
