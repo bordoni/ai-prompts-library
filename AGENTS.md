@@ -106,9 +106,9 @@ ai-prompts-library/
 **Template Structure**:
 ```php
 [
-    ['core/heading', ['level' => 2, 'placeholder' => 'Prompt Title (optional)']],
-    ['ai-prompts-library/prompt-content', []],
     ['core/paragraph', ['placeholder' => 'Add a description or usage notes...']],
+    ['core/paragraph', ['content' => '<strong>Prompt:</strong>', 'lock' => ['move' => true, 'remove' => true]]],
+    ['ai-prompts-library/prompt-content', []],
 ]
 ```
 
@@ -120,14 +120,7 @@ ai-prompts-library/
 
 **Type**: Non-hierarchical (tag-like)
 
-**Default Terms** (created on activation):
-- Claude
-- ChatGPT
-- Cursor
-- GitHub Copilot
-- Gemini
-- Perplexity
-- Generic
+**Default Terms**: None created by default. Users can add their own compatibility terms.
 
 **Usage**: Tag prompts with compatible AI tools
 
@@ -144,7 +137,10 @@ ai-prompts-library/
 | `_ai_prompt_word_count` | integer | Word count | Yes (on save) |
 | `_ai_prompt_model` | string | Target AI model (optional) | No |
 
-**Auto-calculation**: Hooked to `updated_post_meta` and `added_post_meta` actions for `_ai_prompt_content`
+**Auto-calculation**: Hooked to:
+- `rest_pre_insert_ai-prompts` - Updates counts when saved via REST API (Block Editor)
+- `updated_post_meta` and `added_post_meta` - Updates when meta is directly modified
+- `save_post_ai-prompts` - Fallback for traditional post save
 
 ### 4. Custom Block: Prompt Content
 
@@ -339,6 +335,30 @@ npm run lint:css
 npm run format
 ```
 
+### Using Pup for Releases
+
+This plugin uses [stellarwp/pup](https://github.com/stellarwp/pup) for build automation and release management.
+
+```bash
+# Build release version
+pup build
+
+# Package plugin for distribution
+pup package
+
+# Create a new release (version bump, changelog, git tag)
+pup release --version 1.1.0
+
+# Check version conflicts
+pup check
+```
+
+**Configuration**: `.puprc` file controls:
+- Build commands (npm install, npm run build)
+- Version file locations (ai-prompts-library.php, readme.txt, package.json)
+- i18n settings for WordPress.org translations
+- Packaging options (zip name, ignore patterns)
+
 ### Adding New Features
 
 #### Adding a New Meta Field
@@ -410,13 +430,19 @@ Edit the `template` array in `Post_Type::register()`:
 
 **File**: `includes/class-taxonomy.php`
 
-Edit the `$default_terms` array in `Taxonomy::create_default_terms()`:
+The `Taxonomy::create_default_terms()` method does not create any default terms. Users should add their own terms via the admin interface or programmatically:
+
 ```php
-$default_terms = array(
-    'Claude',
-    'ChatGPT',
-    'New Tool', // Add here
-);
+// To programmatically add default terms, modify create_default_terms():
+public static function create_default_terms() {
+    $default_terms = array( 'Claude', 'ChatGPT', 'Cursor' );
+
+    foreach ( $default_terms as $term ) {
+        if ( ! term_exists( $term, 'ai-compatibility' ) ) {
+            wp_insert_term( $term, 'ai-compatibility' );
+        }
+    }
+}
 ```
 
 ### Customizing Export Format
@@ -774,6 +800,8 @@ For issues, bugs, or feature requests, please consult the original plan document
 
 **Maintainer**: Based on plan by Gustavo Bordoni (bordoni)
 
-**Repository**: Local development (not yet on GitHub/WordPress.org)
+**Repository**: https://github.com/bordoni/ai-prompts-library
 
 **License**: GPL v2 or later
+
+**Build Tool**: Uses [stellarwp/pup](https://github.com/stellarwp/pup) for build and release automation (configured in `.puprc`)
