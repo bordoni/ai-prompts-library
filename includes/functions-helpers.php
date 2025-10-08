@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get prompt content by post ID.
  *
+ * @since 1.0.0
+ *
  * @param int $post_id The post ID.
  * @return string The prompt content.
  */
@@ -24,6 +26,8 @@ function get_prompt_content( $post_id ) {
 
 /**
  * Get all AI prompts.
+ *
+ * @since 1.0.0
  *
  * @param array $args Query arguments.
  * @return \WP_Post[] Array of post objects.
@@ -46,6 +50,8 @@ function get_ai_prompts( $args = array() ) {
 /**
  * Get compatibility terms for a prompt.
  *
+ * @since 1.0.0
+ *
  * @param int $post_id The post ID.
  * @return array Array of term objects.
  */
@@ -55,6 +61,8 @@ function get_prompt_compatibility( $post_id ) {
 
 /**
  * Calculate character count for prompt content.
+ *
+ * @since 1.0.0
  *
  * @param string $content The prompt content.
  * @return int Character count.
@@ -66,6 +74,8 @@ function calculate_character_count( $content ) {
 /**
  * Calculate word count for prompt content.
  *
+ * @since 1.0.0
+ *
  * @param string $content The prompt content.
  * @return int Word count.
  */
@@ -75,6 +85,8 @@ function calculate_word_count( $content ) {
 
 /**
  * Sanitize prompt content.
+ *
+ * @since 1.0.0
  *
  * @param string $content The prompt content.
  * @return string Sanitized content.
@@ -86,6 +98,8 @@ function sanitize_prompt_content( $content ) {
 /**
  * Check if current user can edit prompts.
  *
+ * @since 1.0.0
+ *
  * @return bool
  */
 function current_user_can_edit_prompts() {
@@ -94,6 +108,8 @@ function current_user_can_edit_prompts() {
 
 /**
  * Check if current user can publish prompts.
+ *
+ * @since 1.0.0
  *
  * @return bool
  */

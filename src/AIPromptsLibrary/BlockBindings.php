@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Block Bindings class for registering custom bindings source.
+ *
+ * @since 1.0.0
  */
 class BlockBindings {
 	/**
 	 * Register block bindings source.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function register() {
 		// Check if function exists (WordPress 6.7+).
@@ -37,6 +41,8 @@ class BlockBindings {
 
 	/**
 	 * Get value callback for block bindings.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param array    $source_args    Source arguments.
 	 * @param WP_Block $block_instance Block instance.

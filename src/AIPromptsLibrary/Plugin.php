@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Main plugin class.
+ *
+ * @since 1.0.0
  */
 class Plugin {
 	/**
 	 * Plugin instance.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @var Plugin
 	 */
@@ -25,6 +29,8 @@ class Plugin {
 
 	/**
 	 * Get plugin instance.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return Plugin
 	 */
@@ -38,6 +44,8 @@ class Plugin {
 
 	/**
 	 * Constructor.
+	 *
+	 * @since 1.0.0
 	 */
 	private function __construct() {
 		$this->init_hooks();
@@ -46,6 +54,8 @@ class Plugin {
 
 	/**
 	 * Initialize WordPress hooks.
+	 *
+	 * @since 1.0.0
 	 */
 	private function init_hooks() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
@@ -60,6 +70,8 @@ class Plugin {
 
 	/**
 	 * Initialize plugin classes.
+	 *
+	 * @since 1.0.0
 	 */
 	private function init_classes() {
 		new AdminColumns();
@@ -69,6 +81,8 @@ class Plugin {
 
 	/**
 	 * Register custom post type.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_post_type() {
 		PostType::register();
@@ -76,6 +90,8 @@ class Plugin {
 
 	/**
 	 * Register custom taxonomy.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_taxonomy() {
 		Taxonomy::register();
@@ -83,6 +99,8 @@ class Plugin {
 
 	/**
 	 * Register meta fields.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_meta_fields() {
 		MetaFields::register();
@@ -90,6 +108,8 @@ class Plugin {
 
 	/**
 	 * Register blocks.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_blocks() {
 		// Register the prompt content block.
@@ -100,6 +120,8 @@ class Plugin {
 
 	/**
 	 * Register block bindings.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_block_bindings() {
 		BlockBindings::register();
@@ -107,6 +129,8 @@ class Plugin {
 
 	/**
 	 * Register REST API routes.
+	 *
+	 * @since 1.0.0
 	 */
 	public function register_rest_routes() {
 		RestApi::register_routes();
@@ -114,6 +138,8 @@ class Plugin {
 
 	/**
 	 * Enqueue admin assets.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string $hook_suffix The current admin page.
 	 */
@@ -138,6 +164,8 @@ class Plugin {
 
 	/**
 	 * Enqueue frontend assets.
+	 *
+	 * @since 1.0.0
 	 */
 	public function enqueue_frontend_assets() {
 		// Frontend assets are enqueued by the block when needed.

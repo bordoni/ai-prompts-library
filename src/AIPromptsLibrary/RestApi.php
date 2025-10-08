@@ -14,15 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * REST API class for custom endpoints.
+ *
+ * @since 1.0.0
  */
 class RestApi {
 	/**
 	 * Namespace for REST routes.
+	 *
+	 * @since 1.0.0
 	 */
 	const NAMESPACE = 'ai-prompts-library/v1';
 
 	/**
 	 * Register REST API routes.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function register_routes() {
 		// Register custom routes.
@@ -115,6 +121,8 @@ class RestApi {
 	/**
 	 * Get prompts list.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param \WP_REST_Request $request Request object.
 	 * @return \WP_REST_Response Response object.
 	 */
@@ -159,6 +167,8 @@ class RestApi {
 	/**
 	 * Get single prompt.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param \WP_REST_Request $request Request object.
 	 * @return \WP_REST_Response|\WP_Error Response object or error.
 	 */
@@ -175,6 +185,8 @@ class RestApi {
 
 	/**
 	 * Duplicate a prompt.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param \WP_REST_Request $request Request object.
 	 * @return \WP_REST_Response|\WP_Error Response object or error.
@@ -225,6 +237,8 @@ class RestApi {
 	/**
 	 * Get compatibility terms.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @return \WP_REST_Response Response object.
 	 */
 	public static function get_compatibilities() {
@@ -250,6 +264,8 @@ class RestApi {
 
 	/**
 	 * Get statistics.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return \WP_REST_Response Response object.
 	 */
@@ -280,6 +296,8 @@ class RestApi {
 	/**
 	 * Prepare prompt data for response.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param \WP_Post $post Post object.
 	 * @return array Prompt data.
 	 */
@@ -308,6 +326,8 @@ class RestApi {
 	/**
 	 * Add meta fields to REST response.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param \WP_REST_Response $response Response object.
 	 * @param \WP_Post          $post     Post object.
 	 * @param \WP_REST_Request  $request  Request object.
@@ -328,6 +348,8 @@ class RestApi {
 
 	/**
 	 * Check if user can edit posts.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return bool
 	 */

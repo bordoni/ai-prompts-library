@@ -14,6 +14,8 @@ import './editor.scss';
 
 /**
  * Register the Prompt Content block.
+ *
+ * @since 1.0.0
  */
 registerBlockType( metadata.name, {
 	...metadata,

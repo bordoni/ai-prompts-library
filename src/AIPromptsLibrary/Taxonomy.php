@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Taxonomy class for registering the ai-compatibility taxonomy.
+ *
+ * @since 1.0.0
  */
 class Taxonomy {
 	/**
 	 * Register the custom taxonomy.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function register() {
 		$labels = array(
@@ -57,6 +61,8 @@ class Taxonomy {
 
 	/**
 	 * Create default terms on plugin activation.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function create_default_terms() {
 		// No default terms created - users can add their own

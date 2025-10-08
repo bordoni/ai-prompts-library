@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Search Enhancement class for extending search to meta fields.
+ *
+ * @since 1.0.0
  */
 class SearchEnhancement {
 	/**
 	 * Constructor.
+	 *
+	 * @since 1.0.0
 	 */
 	public function __construct() {
 		add_filter( 'posts_search', array( $this, 'extend_search_to_meta' ), 10, 2 );
@@ -27,6 +31,8 @@ class SearchEnhancement {
 
 	/**
 	 * Extend search to include meta fields.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string    $search Search query.
 	 * @param \WP_Query $query  Query object.
@@ -67,6 +73,8 @@ class SearchEnhancement {
 	/**
 	 * Join postmeta table for search.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string    $join  Join query.
 	 * @param \WP_Query $query Query object.
 	 * @return string Modified join query.
@@ -99,6 +107,8 @@ class SearchEnhancement {
 
 	/**
 	 * Make search results distinct to avoid duplicates.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string    $distinct Distinct clause.
 	 * @param \WP_Query $query    Query object.

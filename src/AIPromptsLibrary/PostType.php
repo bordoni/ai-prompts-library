@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Post Type class for registering the ai-prompts custom post type.
+ *
+ * @since 1.0.0
  */
 class PostType {
 	/**
 	 * Register the custom post type.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function register() {
 		$labels = array(

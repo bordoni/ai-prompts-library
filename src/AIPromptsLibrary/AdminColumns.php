@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Admin Columns class for custom admin list table columns.
+ *
+ * @since 1.0.0
  */
 class AdminColumns {
 	/**
 	 * Constructor.
+	 *
+	 * @since 1.0.0
 	 */
 	public function __construct() {
 		add_filter( 'manage_ai-prompts_posts_columns', array( $this, 'add_custom_columns' ) );
@@ -27,6 +31,8 @@ class AdminColumns {
 
 	/**
 	 * Add custom columns to the admin list table.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param array $columns Existing columns.
 	 * @return array Modified columns.
@@ -50,6 +56,8 @@ class AdminColumns {
 
 	/**
 	 * Render custom columns.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string $column  Column name.
 	 * @param int    $post_id Post ID.
@@ -83,6 +91,8 @@ class AdminColumns {
 
 	/**
 	 * Make custom columns sortable.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param array $columns Sortable columns.
 	 * @return array Modified sortable columns.

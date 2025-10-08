@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Meta Fields class for registering post meta.
+ *
+ * @since 1.0.0
  */
 class MetaFields {
 	/**
 	 * Register post meta fields.
+	 *
+	 * @since 1.0.0
 	 */
 	public static function register() {
 		// Register the main prompt content meta field.
@@ -86,6 +90,8 @@ class MetaFields {
 
 	/**
 	 * Add meta update hooks.
+	 *
+	 * @since 1.0.0
 	 */
 	private static function add_meta_update_hooks() {
 		// Update character and word count when prompt content is saved via REST API.
@@ -101,6 +107,8 @@ class MetaFields {
 
 	/**
 	 * Update character and word counts when prompt content changes.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param int    $meta_id    ID of updated metadata entry.
 	 * @param int    $post_id    Post ID.
@@ -130,6 +138,8 @@ class MetaFields {
 	/**
 	 * Update counts when post is saved.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param int $post_id Post ID.
 	 */
 	public static function update_counts_on_save( $post_id ) {
@@ -156,6 +166,8 @@ class MetaFields {
 
 	/**
 	 * Update counts when post is saved via REST API.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param \stdClass        $prepared_post Prepared post object.
 	 * @param \WP_REST_Request $request       Request object.

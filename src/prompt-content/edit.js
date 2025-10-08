@@ -23,6 +23,8 @@ import { copy } from '@wordpress/icons';
 /**
  * Edit component for the Prompt Content block.
  *
+ * @since 1.0.0
+ *
  * @param {Object}   props               Component props.
  * @param {Object}   props.attributes    Block attributes.
  * @param {Function} props.setAttributes Function to set attributes.

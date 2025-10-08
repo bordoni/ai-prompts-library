@@ -36,6 +36,8 @@ if ( file_exists( AI_PROMPTS_LIBRARY_PATH . 'vendor/autoload.php' ) ) {
 	/**
 	 * Fallback autoloader for plugin classes when Composer is not available.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $class The class name to load.
 	 */
 	function autoloader( $class ) {
@@ -67,6 +69,8 @@ if ( file_exists( AI_PROMPTS_LIBRARY_PATH . 'vendor/autoload.php' ) ) {
 
 /**
  * Initialize the plugin.
+ *
+ * @since 1.0.0
  */
 function init() {
 	// Load plugin text domain.
@@ -84,6 +88,8 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\\init' );
 
 /**
  * Plugin activation hook.
+ *
+ * @since 1.0.0
  */
 function activate() {
 	// Register post types and taxonomies.
@@ -101,6 +107,8 @@ register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate' );
 
 /**
  * Plugin deactivation hook.
+ *
+ * @since 1.0.0
  */
 function deactivate() {
 	// Flush rewrite rules.

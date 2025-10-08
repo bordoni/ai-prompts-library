@@ -14,10 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Import/Export class for prompts.
+ *
+ * @since 1.0.0
  */
 class ImportExport {
 	/**
 	 * Constructor.
+	 *
+	 * @since 1.0.0
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_import_export_page' ) );
@@ -29,6 +33,8 @@ class ImportExport {
 
 	/**
 	 * Add import/export admin page.
+	 *
+	 * @since 1.0.0
 	 */
 	public function add_import_export_page() {
 		add_submenu_page(
@@ -43,6 +49,8 @@ class ImportExport {
 
 	/**
 	 * Render import/export page.
+	 *
+	 * @since 1.0.0
 	 */
 	public function render_import_export_page() {
 		?>
@@ -207,6 +215,8 @@ class ImportExport {
 
 	/**
 	 * Handle export.
+	 *
+	 * @since 1.0.0
 	 */
 	public function handle_export() {
 		// Check nonce and permissions.
@@ -273,6 +283,8 @@ class ImportExport {
 
 	/**
 	 * Handle import.
+	 *
+	 * @since 1.0.0
 	 */
 	public function handle_import() {
 		// Check nonce and permissions.
@@ -367,6 +379,8 @@ class ImportExport {
 	/**
 	 * Create a new prompt.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array $prompt_data Prompt data.
 	 * @return int|WP_Error Post ID on success, WP_Error on failure.
 	 */
@@ -385,6 +399,8 @@ class ImportExport {
 	/**
 	 * Add bulk export action.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array $actions Bulk actions.
 	 * @return array Modified bulk actions.
 	 */
@@ -395,6 +411,8 @@ class ImportExport {
 
 	/**
 	 * Handle bulk export.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param string $redirect_to Redirect URL.
 	 * @param string $doaction    Action name.
