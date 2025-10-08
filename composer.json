@@ -13,9 +13,7 @@
     "require": {
         "php": "^7.4|^8.0"
     },
-    "require-dev": {
-        "stellarwp/pup": "^1.3"
-    },
+    "require-dev": {},
     "autoload": {
         "psr-4": {
             "AIPromptsLibrary\\": "src/AIPromptsLibrary/"
@@ -25,6 +23,14 @@
         ]
     },
     "scripts": {
+        "post-install-cmd": [
+            "@php -r \"if (!file_exists('bin')) { mkdir('bin', 0755, true); }\"",
+            "@php -r \"if (!file_exists('bin/pup.phar')) { copy('https://github.com/stellarwp/pup/releases/latest/download/pup.phar', 'bin/pup.phar'); chmod('bin/pup.phar', 0755); }\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"if (!file_exists('bin')) { mkdir('bin', 0755, true); }\"",
+            "@php -r \"if (!file_exists('bin/pup.phar')) { copy('https://github.com/stellarwp/pup/releases/latest/download/pup.phar', 'bin/pup.phar'); chmod('bin/pup.phar', 0755); }\""
+        ],
         "pup": [
             "@php ./bin/pup.phar"
         ]
