@@ -13,30 +13,15 @@
             "fail_method_dev": "warn"
         }
     },
-    "i18n": {
-        "path": "languages",
-        "formats": ["mo"],
-        "slug": "wp-plugins/ai-prompts-library/stable",
-        "textdomain": "ai-prompts-library",
-        "url": "https://translate.wordpress.org"
-    },
     "paths": {
         "build_dir": ".pup-build",
         "changelog": "readme.txt",
-        "css": [
-            "assets/css/*.css"
-        ],
-        "js": [
-            "assets/js/*.js"
-        ],
+        "css": [],
+        "js": [],
         "versions": [
             {
                 "file": "ai-prompts-library.php",
                 "regex": "(Version: +)(.+)"
-            },
-            {
-                "file": "ai-prompts-library.php",
-                "regex": "(define\\( 'AI_PROMPTS_LIBRARY_VERSION', ')([^']+)"
             },
             {
                 "file": "readme.txt",
