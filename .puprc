@@ -1,0 +1,55 @@
+{
+    "build": [
+        "npm install",
+        "npm run build"
+    ],
+    "build_dev": [
+        "npm install",
+        "npm run build"
+    ],
+    "checks": {
+        "version-conflict": {
+            "fail_method": "error",
+            "fail_method_dev": "warn"
+        }
+    },
+    "i18n": {
+        "path": "languages",
+        "formats": ["mo"],
+        "slug": "wp-plugins/ai-prompts-library/stable",
+        "textdomain": "ai-prompts-library",
+        "url": "https://translate.wordpress.org"
+    },
+    "paths": {
+        "build_dir": ".pup-build",
+        "changelog": "readme.txt",
+        "css": [
+            "assets/css/*.css"
+        ],
+        "js": [
+            "assets/js/*.js"
+        ],
+        "versions": [
+            {
+                "file": "ai-prompts-library.php",
+                "regex": "(Version: +)(.+)"
+            },
+            {
+                "file": "ai-prompts-library.php",
+                "regex": "(define\\( 'AI_PROMPTS_LIBRARY_VERSION', ')([^']+)"
+            },
+            {
+                "file": "readme.txt",
+                "regex": "(Stable tag: +)(.+)"
+            },
+            {
+                "file": "package.json",
+                "regex": "(\"version\": \")([^\"]+)"
+            }
+        ],
+        "zip_dir": ".pup-zip"
+    },
+    "repo": "bordoni/ai-prompts-library",
+    "zip_use_default_ignore": true,
+    "zip_name": "ai-prompts-library"
+}
