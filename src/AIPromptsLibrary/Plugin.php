@@ -62,9 +62,9 @@ class Plugin {
 	 * Initialize plugin classes.
 	 */
 	private function init_classes() {
-		new Admin_Columns();
-		new Search_Enhancement();
-		new Import_Export();
+		new AdminColumns();
+		new SearchEnhancement();
+		new ImportExport();
 	}
 
 	/**
