@@ -339,25 +339,66 @@ npm run format
 
 This plugin uses [stellarwp/pup](https://github.com/stellarwp/pup) for build automation and release management.
 
+**Local Build Commands:**
+
 ```bash
-# Build release version
-pup build
-
-# Package plugin for distribution
-pup package
-
-# Create a new release (version bump, changelog, git tag)
-pup release --version 1.1.0
+# Build assets
+php bin/pup.phar build
 
 # Check version conflicts
-pup check
+php bin/pup.phar check
+
+# Get current version
+php bin/pup.phar get-version
+
+# Clean pup directories
+php bin/pup.phar clean
 ```
 
 **Configuration**: `.puprc` file controls:
 - Build commands (npm install, npm run build)
 - Version file locations (ai-prompts-library.php, readme.txt, package.json)
-- i18n settings for WordPress.org translations
 - Packaging options (zip name, ignore patterns)
+- No i18n configuration (plugin has no translations)
+
+**Note**: Due to issues with `pup package` getting stuck on file synchronization, releases are automated via GitHub Actions instead of local pup commands.
+
+### Creating Releases with GitHub Actions
+
+This plugin uses GitHub Actions workflows for automated release builds.
+
+**Creating a Release:**
+
+1. **Tag the release** (without 'v' prefix):
+   ```bash
+   git tag -a 1.0.1 -m "Release 1.0.1 - Description"
+   git push origin 1.0.1
+   ```
+
+2. **Create GitHub Release:**
+   - Go to https://github.com/bordoni/ai-prompts-library/releases/new
+   - Select the tag (e.g., `1.0.1`)
+   - Add release notes
+   - Publish the release
+
+3. **Automatic ZIP Generation:**
+   - The `release-attach-zip.yml` workflow automatically triggers
+   - Builds the plugin using the `zip.yml` workflow
+   - Attaches the generated ZIP to the release
+
+**Manual ZIP Generation:**
+
+You can manually trigger the zip workflow:
+1. Go to Actions → Generate Zip
+2. Click "Run workflow"
+3. Select branch and production mode
+4. Download the artifact from the workflow run
+
+**Workflows:**
+- `.github/workflows/zip.yml` - Builds plugin package
+- `.github/workflows/release-attach-zip.yml` - Attaches ZIP to releases
+
+**IMPORTANT**: Always use version tags WITHOUT the 'v' prefix (e.g., `1.0.0`, not `v1.0.0`)
 
 ### Adding New Features
 
